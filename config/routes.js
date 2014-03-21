@@ -72,6 +72,16 @@ module.exports = function (app) {
             res.redirect('/');
         });
 
+    app.get('/auth/github', passport.authenticate('github'),
+        function(req, res){
+        });
+    app.get('/auth/github/callback',
+        passport.authenticate('github', { failureRedirect: '/login' }),
+        function(req, res) {
+            res.redirect('/');
+        });
+
+
 
     // application -------------------------------------------------------------
     app.get('/', function (req, res) {
