@@ -40,7 +40,8 @@ module.exports = {
     google: {
       clientID: "APP_ID",
       clientSecret: "APP_SECRET",
-      callbackURL: "http://localhost:3000/auth/google/callback"
+      returnURL: "http://aqueous-savannah-4196.herokuapp.com/auth/google/callback",
+      realm: "http://aqueous-savannah-4196.herokuapp.com"
     },
     linkedin: {
       clientID: "CONSUMER_KEY",
@@ -104,9 +105,10 @@ module.exports = {
           callbackURL: 'http://localhost:3000/auth/github/callback'
       },
       google: {
-          clientID: "APP_ID",
-          clientSecret: "APP_SECRET",
-          callbackURL: "http://localhost:3000/auth/google/callback"
+          clientID: "224205377459.apps.googleusercontent.com",
+          clientSecret: "224205377459@developer.gserviceaccount.com",
+          returnURL: "http://aqueous-savannah-4196.herokuapp.com/auth/google/callback",
+          realm: "http://aqueous-savannah-4196.herokuapp.com"
       },
       linkedin: {
           clientID: "CONSUMER_KEY",
