@@ -89,9 +89,9 @@ module.exports = {
           name: 'Nodejs Express Mongoose Demo'
       },
       facebook: {
-          clientID: "225586927649145",
-          clientSecret: "f8032a10d84ee8037e610c266dd6f7e3",
-          callbackURL: "http://serene-peak-7443.herokuapp.com/auth/facebook/callback"
+          clientID: "626240344115788",
+          clientSecret: "d6f6b2fc5b53aa97614798fa6ca9e48d",
+          callbackURL: "http://aqueous-savannah-4196.herokuapp.com/auth/facebook/callback"
       },
       twitter: {
           clientID: "CONSUMER_KEY",
