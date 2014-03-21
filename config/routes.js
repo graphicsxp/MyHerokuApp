@@ -85,6 +85,6 @@ module.exports = function (app) {
 
     // application -------------------------------------------------------------
     app.get('/', function (req, res) {
-        res.render('index', { title: "TODO" })
+        res.render('index', { title: "TODO", user: req.user })
     });
 }
