@@ -55,6 +55,7 @@ module.exports = {
     app: {
       name: 'Nodejs Express Mongoose Demo'
     },
+      //comment
     facebook: {
       clientID: "APP_ID",
       clientSecret: "APP_SECRET",
