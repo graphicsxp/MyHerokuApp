@@ -33,8 +33,8 @@ module.exports = {
       callbackURL: "http://localhost:3000/auth/twitter/callback"
     },
     github: {
-      clientID: 'APP_ID',
-      clientSecret: 'APP_SECRET',
+      clientID: '4f528995ee2120b8723d',
+      clientSecret: '727bda5ba0fa70ff198bf2cb89f6d3df23a66f22',
       callbackURL: 'http://localhost:3000/auth/github/callback'
     },
     google: {
@@ -100,9 +100,9 @@ module.exports = {
           callbackURL: "http://localhost:3000/auth/twitter/callback"
       },
       github: {
-          clientID: 'APP_ID',
-          clientSecret: 'APP_SECRET',
-          callbackURL: 'http://localhost:3000/auth/github/callback'
+          clientID: '4f528995ee2120b8723d',
+          clientSecret: '727bda5ba0fa70ff198bf2cb89f6d3df23a66f22',
+          callbackURL: 'http://aqueous-savannah-4196.herokuapp.com//auth/github/callback'
       },
       google: {
           clientID: "224205377459.apps.googleusercontent.com",

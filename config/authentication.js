@@ -4,6 +4,7 @@
 var passport = require('passport')
     , FacebookStrategy = require('passport-facebook').Strategy
     , GoogleStrategy = require('passport-google').Strategy
+    , GithubStrategy = require('passport-github').Strategy
     , User = require('../models/user')
 
 module.exports = function (config) {
@@ -37,4 +38,5 @@ module.exports = function (config) {
 
     passport.use(new FacebookStrategy(config.facebook, authenticationCallback));
     passport.use(new GoogleStrategy(config.google, authenticationCallback));
+    passport.use(new GithubStrategy(config.github, authenticationCallback));
 };
