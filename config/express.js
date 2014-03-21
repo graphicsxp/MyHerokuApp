@@ -8,7 +8,8 @@ var express = require('express')
     , winston = require('winston')
     , helpers = require('view-helpers')
     , pkg = require('../package.json')
-    , assets = require('./assets');
+    , assets = require('./assets')
+    , passport = require('passport');
 
 var env = process.env.NODE_ENV || 'development'
 
