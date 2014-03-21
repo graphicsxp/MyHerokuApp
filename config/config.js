@@ -23,8 +23,8 @@ module.exports = {
       name: 'Nodejs Express Mongoose Demo'
     },
     facebook: {
-      clientID: "APP_ID",
-      clientSecret: "APP_SECRET",
+      clientID: "1455496368015771",
+      clientSecret: "3db5fefd1d3cc14526f34826bba092a7",
       callbackURL: "http://localhost:3000/auth/facebook/callback"
     },
     twitter: {
@@ -55,7 +55,6 @@ module.exports = {
     app: {
       name: 'Nodejs Express Mongoose Demo'
     },
-      //comment
     facebook: {
       clientID: "APP_ID",
       clientSecret: "APP_SECRET",
@@ -90,9 +89,9 @@ module.exports = {
           name: 'Nodejs Express Mongoose Demo'
       },
       facebook: {
-          clientID: "APP_ID",
-          clientSecret: "APP_SECRET",
-          callbackURL: "http://localhost:3000/auth/facebook/callback"
+          clientID: "1455496368015771",
+          clientSecret: "3db5fefd1d3cc14526f34826bba092a7",
+          callbackURL: "http://serene-peak-7443.herokuapp.com/auth/facebook/callback"
       },
       twitter: {
           clientID: "CONSUMER_KEY",
