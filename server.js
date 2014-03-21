@@ -42,6 +42,8 @@ require('./config/express')(app, config);
 // Bootstrap routes
 require('./config/routes')(app)
 
+require('./config/authentication')(config);
+
 // development only
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());

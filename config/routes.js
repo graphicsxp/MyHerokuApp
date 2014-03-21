@@ -1,33 +1,8 @@
-    /*!
-     * Module dependencies.
-     */
+var Todo = require('../models/todo')
+    , passport = require('passport');
 
-    // var async = require('async')
-
-    /**
-     * Controllers
-     */
-
-    // var users = require('../app/controllers/users')
-    //   , articles = require('../app/controllers/articles')
-    //   , auth = require('./middlewares/authorization')
-
-    /**
-     * Route middlewares
-     */
-
-    // var articleAuth = [auth.requiresLogin, auth.article.hasAuthorization]
-    // var commentAuth = [auth.requiresLogin, auth.comment.hasAuthorization]
-
-    /**
-     * Expose routes
-     */
-
-var Todo = require('../models/todo');
 
 module.exports = function (app) {
-
-
 
     // api ---------------------------------------------------------------------
     // get all todos
@@ -61,7 +36,6 @@ module.exports = function (app) {
                 res.json(todos);
             });
         });
-
     });
 
     // delete a todo
@@ -81,12 +55,17 @@ module.exports = function (app) {
         });
     });
 
+    //authentication ------------------------------------------------------------
+    app.get('/auth/facebook', passport.authenticate('facebook'));
 
+    app.get('/auth/facebook/callback',
+        passport.authenticate('facebook', {
+            successRedirect: '/',
+            failureRedirect: '/login'}));
 
 
     // application -------------------------------------------------------------
     app.get('/', function (req, res) {
-        //res.sendfile('./public/index.html.old'); // load the single view file (angular will handle the page changes on the front-end)
         res.render('index', { title: "TODO" })
     });
 }

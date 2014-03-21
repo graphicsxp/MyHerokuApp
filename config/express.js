@@ -8,10 +8,6 @@ var express = require('express')
     , winston = require('winston')
     , helpers = require('view-helpers')
     , pkg = require('../package.json')
-//    , UserHandler = require('./handlers/UserHandler')
-//    , AuthHandler = require('./handlers/AuthHandler')
-    , passport = require('passport'),
-    FacebookStrategy = require('passport-facebook').Strategy
     , assets = require('./assets');
 
 var env = process.env.NODE_ENV || 'development'
@@ -56,7 +52,6 @@ module.exports = function (app, config) {
 
         app.use(express.static(config.root + '/public'))  // set the static files location /public/img will be /img for users
 
-
         // cookieParser should be above session
         app.use(express.cookieParser())
 
@@ -74,44 +69,18 @@ module.exports = function (app, config) {
                 url: config.db,
                 collection: 'sessions'
             })
-        }))
+        }));
 
-
-        passport.serializeUser(function(user, done) {
+        passport.serializeUser(function (user, done) {
             done(null, user);
         });
 
-        passport.deserializeUser(function(id, done) {
-            done(null, 'juancito');
+        passport.deserializeUser(function (obj, done) {
+            done(null, obj);
         });
         // use passport session
         app.use(passport.initialize());
         app.use(passport.session());
-
-        var profile1;
-        var accessToken1;
-        passport.use(new FacebookStrategy(
-            config.facebook
-            , function (accessToken, refreshToken, profile, done) {
-                    profile1 = profile;
-                    accessToken1 = accessToken
-                var user = {facebookId: profile.id, name: profile.displayName };
-                return done(null, user);
-            }))
-        app.get('/auth/facebook', passport.authenticate('facebook'));
-
-/*        app.get('/auth/facebook/callback', function(req, res){
-            passport.authenticate('facebook');
-            res.send(profile1 + 'token: ' + accessToken1);
-        })*/
-
-
-        app.get('/auth/facebook/callback',
-            passport.authenticate('facebook',{
-            successRedirect: '/',
-            failureRedirect: '/login'}));
-
-
 
         // connect flash for flash messages - should be declared after sessions
         app.use(flash())
@@ -119,7 +88,7 @@ module.exports = function (app, config) {
         // should be declared after session and flash
         app.use(helpers(pkg.name))
 
-        // adds CSRF support
+      // adds CSRF support
 //    if (process.env.NODE_ENV !== 'test') {
 //      app.use(express.csrf())
 //
@@ -162,7 +131,7 @@ module.exports = function (app, config) {
         })
     })
 
-// set views path, template engine and default layout
+    // set views path, template engine and default layout
     app.set('views', config.root + '/views')
     app.set('view engine', 'ejs');
 
