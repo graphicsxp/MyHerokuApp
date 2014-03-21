@@ -23,8 +23,8 @@ module.exports = {
       name: 'Nodejs Express Mongoose Demo'
     },
     facebook: {
-      clientID: "1455496368015771",
-      clientSecret: "3db5fefd1d3cc14526f34826bba092a7",
+      clientID: "225586927649145",
+      clientSecret: "f8032a10d84ee8037e610c266dd6f7e3",
       callbackURL: "http://localhost:3000/auth/facebook/callback"
     },
     twitter: {
@@ -89,8 +89,8 @@ module.exports = {
           name: 'Nodejs Express Mongoose Demo'
       },
       facebook: {
-          clientID: "1455496368015771",
-          clientSecret: "3db5fefd1d3cc14526f34826bba092a7",
+          clientID: "225586927649145",
+          clientSecret: "f8032a10d84ee8037e610c266dd6f7e3",
           callbackURL: "http://serene-peak-7443.herokuapp.com/auth/facebook/callback"
       },
       twitter: {

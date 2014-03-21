@@ -76,6 +76,14 @@ module.exports = function (app, config) {
             })
         }))
 
+
+        passport.serializeUser(function(user, done) {
+            done(null, user);
+        });
+
+        passport.deserializeUser(function(id, done) {
+            done(null, 'juancito');
+        });
         // use passport session
         app.use(passport.initialize());
         app.use(passport.session());
