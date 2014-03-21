@@ -102,7 +102,7 @@ module.exports = {
       github: {
           clientID: '4f528995ee2120b8723d',
           clientSecret: '727bda5ba0fa70ff198bf2cb89f6d3df23a66f22',
-          callbackURL: 'http://aqueous-savannah-4196.herokuapp.com//auth/github/callback'
+          callbackURL: 'http://aqueous-savannah-4196.herokuapp.com/auth/github/callback'
       },
       google: {
           clientID: "224205377459.apps.googleusercontent.com",
