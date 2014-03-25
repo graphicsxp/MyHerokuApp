@@ -56,32 +56,55 @@ module.exports = function (app) {
     });
 
     //authentication ------------------------------------------------------------
-    app.get('/auth/facebook', passport.authenticate('facebook'));
+    app.get('/auth/facebook', passport.authenticate('facebook', { scope: 'email' }));
 
     app.get('/auth/facebook/callback',
         passport.authenticate('facebook', {
             successRedirect: '/',
-            failureRedirect: '/login'}));
+            failureRedirect: '/login',
+            failureFlash: true
+        })
+    );
 
     app.get('/auth/google', passport.authenticate('google'),
-        function(req, res){
+        function (req, res) {
         });
     app.get('/auth/google/callback',
-        passport.authenticate('google', { failureRedirect: '/login' }),
-        function(req, res) {
+        passport.authenticate('google', {
+            failureRedirect: '/login',
+            failureFlash: true
+        }),
+        function (req, res) {
             res.redirect('/');
-        });
+        }
+    );
 
-    app.get('/auth/github', passport.authenticate('github'),
-        function(req, res){
-        });
+    app.get('/auth/github', passport.authenticate('github', {
+        failureRedirect: '/login',
+        failureFlash: true
+    }),
+        function (req, res) {
+        }
+    );
+
     app.get('/auth/github/callback',
-        passport.authenticate('github', { failureRedirect: '/login' }),
-        function(req, res) {
+        passport.authenticate('github', {
+            failureRedirect: '/login',
+            failureFlash: true
+        }),
+        function (req, res) {
             res.redirect('/');
-        });
+        }
+    );
 
+    app.get('/login', function (req, res) {
 
+    });
+
+    app.get('/logout', function (req, res) {
+        req.logout();
+        res.redirect('/');
+    });
 
     // application -------------------------------------------------------------
     app.get('/', function (req, res) {

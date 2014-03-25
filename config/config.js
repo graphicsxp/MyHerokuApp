@@ -25,28 +25,33 @@ module.exports = {
     facebook: {
       clientID: "225586927649145",
       clientSecret: "f8032a10d84ee8037e610c266dd6f7e3",
-      callbackURL: "http://localhost:3000/auth/facebook/callback"
+      callbackURL: "http://localhost:3000/auth/facebook/callback",
+      passReqToCallback : true // allows us to pass in the req from our route (lets us check if a user is logged in or not)
     },
     twitter: {
       clientID: "CONSUMER_KEY",
       clientSecret: "CONSUMER_SECRET",
-      callbackURL: "http://localhost:3000/auth/twitter/callback"
+      callbackURL: "http://localhost:3000/auth/twitter/callback",
+      passReqToCallback : true
     },
     github: {
       clientID: '4f528995ee2120b8723d',
       clientSecret: '727bda5ba0fa70ff198bf2cb89f6d3df23a66f22',
-      callbackURL: 'http://localhost:3000/auth/github/callback'
+      callbackURL: 'http://localhost:3000/auth/github/callback',
+        passReqToCallback : true
     },
     google: {
       clientID: "APP_ID",
       clientSecret: "APP_SECRET",
       returnURL: "http://aqueous-savannah-4196.herokuapp.com/auth/google/callback",
-      realm: "http://aqueous-savannah-4196.herokuapp.com"
+      realm: "http://aqueous-savannah-4196.herokuapp.com",
+      passReqToCallback : true
     },
     linkedin: {
       clientID: "CONSUMER_KEY",
       clientSecret: "CONSUMER_SECRET",
-      callbackURL: "http://localhost:3000/auth/linkedin/callback"
+      callbackURL: "http://localhost:3000/auth/linkedin/callback",
+      passReqToCallback : true
     }
   },
   test: {
@@ -59,27 +64,32 @@ module.exports = {
     facebook: {
       clientID: "APP_ID",
       clientSecret: "APP_SECRET",
-      callbackURL: "http://localhost:3000/auth/facebook/callback"
+      callbackURL: "http://localhost:3000/auth/facebook/callback",
+      passReqToCallback : true
     },
     twitter: {
       clientID: "CONSUMER_KEY",
       clientSecret: "CONSUMER_SECRET",
-      callbackURL: "http://localhost:3000/auth/twitter/callback"
+      callbackURL: "http://localhost:3000/auth/twitter/callback",
+      passReqToCallback : true
     },
     github: {
       clientID: 'APP_ID',
       clientSecret: 'APP_SECRET',
-      callbackURL: 'http://localhost:3000/auth/github/callback'
+      callbackURL: 'http://localhost:3000/auth/github/callback',
+      passReqToCallback : true
     },
     google: {
       clientID: "APP_ID",
       clientSecret: "APP_SECRET",
-      callbackURL: "http://localhost:3000/auth/google/callback"
+      callbackURL: "http://localhost:3000/auth/google/callback",
+      passReqToCallback : true
     },
     linkedin: {
       clientID: "CONSUMER_KEY",
       clientSecret: "CONSUMER_SECRET",
-      callbackURL: "http://localhost:3000/auth/linkedin/callback"
+      callbackURL: "http://localhost:3000/auth/linkedin/callback",
+      passReqToCallback : true
     }
   },
   production: {
@@ -92,28 +102,33 @@ module.exports = {
       facebook: {
           clientID: "626240344115788",
           clientSecret: "d6f6b2fc5b53aa97614798fa6ca9e48d",
-          callbackURL: "http://aqueous-savannah-4196.herokuapp.com/auth/facebook/callback"
+          callbackURL: "http://aqueous-savannah-4196.herokuapp.com/auth/facebook/callback",
+          passReqToCallback : true
       },
       twitter: {
           clientID: "CONSUMER_KEY",
           clientSecret: "CONSUMER_SECRET",
-          callbackURL: "http://localhost:3000/auth/twitter/callback"
+          callbackURL: "http://localhost:3000/auth/twitter/callback",
+          passReqToCallback : true
       },
       github: {
           clientID: '4f528995ee2120b8723d',
           clientSecret: '727bda5ba0fa70ff198bf2cb89f6d3df23a66f22',
-          callbackURL: 'http://aqueous-savannah-4196.herokuapp.com/auth/github/callback'
+          callbackURL: 'http://aqueous-savannah-4196.herokuapp.com/auth/github/callback',
+          passReqToCallback : true
       },
       google: {
           clientID: "224205377459.apps.googleusercontent.com",
           clientSecret: "224205377459@developer.gserviceaccount.com",
           returnURL: "http://aqueous-savannah-4196.herokuapp.com/auth/google/callback",
-          realm: "http://aqueous-savannah-4196.herokuapp.com"
+          realm: "http://aqueous-savannah-4196.herokuapp.com",
+          passReqToCallback : true
       },
       linkedin: {
           clientID: "CONSUMER_KEY",
           clientSecret: "CONSUMER_SECRET",
-          callbackURL: "http://localhost:3000/auth/linkedin/callback"
+          callbackURL: "http://localhost:3000/auth/linkedin/callback",
+          passReqToCallback : true
       }
   }
 }
