@@ -38,7 +38,7 @@ module.exports = {
       clientID: '4f528995ee2120b8723d',
       clientSecret: '727bda5ba0fa70ff198bf2cb89f6d3df23a66f22',
       callbackURL: 'http://localhost:3000/auth/github/callback',
-        passReqToCallback : true
+      passReqToCallback : true
     },
     google: {
       clientID: "224205377459-72f1vsf1c2hmjjlq4pr8vh0o1nsbnfvm.apps.googleusercontent.com",
@@ -82,7 +82,7 @@ module.exports = {
       google: {
           clientID: "224205377459.apps.googleusercontent.com",
           clientSecret: "224205377459@developer.gserviceaccount.com",
-          returnURL: "http://aqueous-savannah-4196.herokuapp.com/auth/google/callback",
+          callbackURL: "http://aqueous-savannah-4196.herokuapp.com/auth/google/callback",
           realm: "http://aqueous-savannah-4196.herokuapp.com",
           passReqToCallback : true
       },
