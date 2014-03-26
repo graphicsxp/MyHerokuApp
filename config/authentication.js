@@ -14,7 +14,7 @@ module.exports = function (config) {
 //        var criteria = new Object();
 //        criteria['profile.provider'] = profile.id;
 
-        User.findOne('facebook.id', function (err, user) {
+        User.findOne({'facebook.id': profile.id}, function (err, user) {
             if (err) {
                 console.log(err);
             }
