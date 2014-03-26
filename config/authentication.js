@@ -50,6 +50,6 @@ module.exports = function (config) {
     }
 
     passport.use(new FacebookStrategy(config.facebook, authenticationCallback));
-//    passport.use(new GoogleStrategy(config.google, authenticationCallback));
+    passport.use(new GoogleStrategy(config.google, authenticationCallback));
 //    passport.use(new GithubStrategy(config.github, authenticationCallback));
 }
