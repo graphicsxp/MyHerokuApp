@@ -40,16 +40,13 @@
 <body data-ng-controller="mainController">
     titre: <%= title %>
 
-    <a href="/auth/facebook">login with facebook</a>
-    <a href="/auth/google">login with google</a>
-    <a href="/auth/github">login with github</a>
-    <a href="/logout">logout</a>
+    <a href="/auth/facebook" ng-show="!isAuthenticated">login with facebook</a>
+    <a href="/auth/google" ng-show="!isAuthenticated">login with google</a>
+    <a href="/auth/github" ng-show="!isAuthenticated">login with github</a>
+    <a href="/logout" ng-show="isAuthenticated">logout</a>
 
-    <% if(user) {%>
-    Welcome <%= user.name %> !
-    <% } else{ %>
-    Welcome stranger !
-    <%} %>
+    <span ng-show="!isAuthenticated">Welcome stranger !</span>
+    <span ng-show="isAuthenticated">Welcome {{user.facebook.name}} !</span>
 
 	<div class="container">
 

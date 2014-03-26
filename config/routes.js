@@ -68,7 +68,8 @@ module.exports = function (app) {
 
     app.get('/auth/google', passport.authenticate('google'),
         function (req, res) {
-        });
+    });
+
     app.get('/auth/google/callback',
         passport.authenticate('google', {
             failureRedirect: '/login',
@@ -98,7 +99,7 @@ module.exports = function (app) {
     );
 
     app.get('/login', function (req, res) {
-
+        res.send({'isAuthenticated': req.isAuthenticated(), 'user': req.user});
     });
 
     app.get('/logout', function (req, res) {
