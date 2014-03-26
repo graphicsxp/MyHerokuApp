@@ -81,7 +81,7 @@ module.exports = {
       },
       google: {
           clientID: "224205377459.apps.googleusercontent.com",
-          clientSecret: "224205377459@developer.gserviceaccount.com",
+          clientSecret: "mSV7rOQ7xAQvF0uIOx3kuyH5",
           callbackURL: "http://aqueous-savannah-4196.herokuapp.com/auth/google/callback",
           realm: "http://aqueous-savannah-4196.herokuapp.com",
           passReqToCallback : true
