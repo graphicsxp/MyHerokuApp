@@ -41,48 +41,10 @@ module.exports = {
         passReqToCallback : true
     },
     google: {
-      clientID: "APP_ID",
-      clientSecret: "APP_SECRET",
-      returnURL: "http://aqueous-savannah-4196.herokuapp.com/auth/google/callback",
-      realm: "http://aqueous-savannah-4196.herokuapp.com",
-      passReqToCallback : true
-    },
-    linkedin: {
-      clientID: "CONSUMER_KEY",
-      clientSecret: "CONSUMER_SECRET",
-      callbackURL: "http://localhost:3000/auth/linkedin/callback",
-      passReqToCallback : true
-    }
-  },
-  test: {
-    db: 'mongodb://localhost/noobjs_test',
-    root: rootPath,
-    notifier: notifier,
-    app: {
-      name: 'Nodejs Express Mongoose Demo'
-    },
-    facebook: {
-      clientID: "APP_ID",
-      clientSecret: "APP_SECRET",
-      callbackURL: "http://localhost:3000/auth/facebook/callback",
-      passReqToCallback : true
-    },
-    twitter: {
-      clientID: "CONSUMER_KEY",
-      clientSecret: "CONSUMER_SECRET",
-      callbackURL: "http://localhost:3000/auth/twitter/callback",
-      passReqToCallback : true
-    },
-    github: {
-      clientID: 'APP_ID',
-      clientSecret: 'APP_SECRET',
-      callbackURL: 'http://localhost:3000/auth/github/callback',
-      passReqToCallback : true
-    },
-    google: {
-      clientID: "APP_ID",
-      clientSecret: "APP_SECRET",
+      clientID: "224205377459-72f1vsf1c2hmjjlq4pr8vh0o1nsbnfvm.apps.googleusercontent.com",
+      clientSecret: "dM9x8YWqI_kxXAHlikpx4uVq",
       callbackURL: "http://localhost:3000/auth/google/callback",
+      realm: "http://localhost:3000",
       passReqToCallback : true
     },
     linkedin: {

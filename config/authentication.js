@@ -3,7 +3,7 @@
  */
 var passport = require('passport')
     , FacebookStrategy = require('passport-facebook').Strategy
-    , GoogleStrategy = require('passport-google').Strategy
+    , GoogleStrategy = require('passport-google-oauth').OAuth2Strategy
     , GithubStrategy = require('passport-github').Strategy
     , User = require('../models/user')
 
@@ -12,7 +12,7 @@ module.exports = function (config) {
     var authenticationCallback = function (req, accessToken, refreshToken, profile, done) {
 
         var criteria = new Object();
-        criteria[profile.provider] = profile.id;
+        criteria[profile.provider + '.id'] = profile.id;
 
         User.findOne(criteria, function (err, user) {
             if (err) {
@@ -23,19 +23,11 @@ module.exports = function (config) {
             } else {
                 var user = new User({created: Date.now()});
 
-                if (profile.provider === 'facebook') {
-                    user.facebook.id = profile.id;
-                    user.facebook.token = accessToken;
-                    user.facebook.name = profile.name.givenName + ' ' + profile.name.familyName;
-                    user.facebook.email = profile.emails[0].value;
-                }
 
-                if (profile.provider === 'google') {
-                    user.google.id = profile.id;
-                    user.google.token = accessToken;
-                    user.google.name = profile.displayName;
-                    user.google.email = profile.emails[0].value;
-                }
+                    user[profile.provider].id = profile.id;
+                    user[profile.provider].token = accessToken;
+                    user[profile.provider].name = profile.name.givenName + ' ' + profile.name.familyName;
+                    user[profile.provider].email = profile.emails[0].value;
 
                 user.save(function (err) {
                     if (err) {
