@@ -25,8 +25,8 @@ module.exports = {
     facebook: {
       clientID: "225586927649145",
       clientSecret: "f8032a10d84ee8037e610c266dd6f7e3",
-      callbackURL: "http://localhost:3000/auth/facebook/callback",
-      passReqToCallback : true // allows us to pass in the req from our route (lets us check if a user is logged in or not)
+      callbackURL: "http://localhost:3000/auth/facebook/callback"/*,
+      passReqToCallback : true // allows us to pass in the req from our route (lets us check if a user is logged in or not)-*/
     },
     twitter: {
       clientID: "CONSUMER_KEY",
@@ -102,8 +102,8 @@ module.exports = {
       facebook: {
           clientID: "626240344115788",
           clientSecret: "d6f6b2fc5b53aa97614798fa6ca9e48d",
-          callbackURL: "http://aqueous-savannah-4196.herokuapp.com/auth/facebook/callback",
-          passReqToCallback : true
+          callbackURL: "http://aqueous-savannah-4196.herokuapp.com/auth/facebook/callback"/*,
+          passReqToCallback : true*/
       },
       twitter: {
           clientID: "CONSUMER_KEY",

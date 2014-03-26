@@ -9,7 +9,7 @@ var passport = require('passport')
 
 module.exports = function (config) {
 
-    var authenticationCallback = function (req, accessToken, refreshToken, profile, done) {
+    var authenticationCallback = function (/*req,*/ accessToken, refreshToken, profile, done) {
 
 //        var criteria = new Object();
 //        criteria['profile.provider'] = profile.id;
