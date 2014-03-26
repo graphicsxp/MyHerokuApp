@@ -9,12 +9,12 @@ var passport = require('passport')
 
 module.exports = function (config) {
 
-    var authenticationCallback = function (/*req,*/ accessToken, refreshToken, profile, done) {
+    var authenticationCallback = function (req, accessToken, refreshToken, profile, done) {
 
-//        var criteria = new Object();
-//        criteria['profile.provider'] = profile.id;
+        var criteria = new Object();
+        criteria[profile.provider] = profile.id;
 
-        User.findOne({'facebook.id': profile.id}, function (err, user) {
+        User.findOne(criteria, function (err, user) {
             if (err) {
                 console.log(err);
             }
@@ -28,6 +28,13 @@ module.exports = function (config) {
                     user.facebook.token = accessToken;
                     user.facebook.name = profile.name.givenName + ' ' + profile.name.familyName;
                     user.facebook.email = profile.emails[0].value;
+                }
+
+                if (profile.provider === 'google') {
+                    user.google.id = profile.id;
+                    user.google.token = accessToken;
+                    user.google.name = profile.displayName;
+                    user.google.email = profile.emails[0].value;
                 }
 
                 user.save(function (err) {
