@@ -35,8 +35,8 @@ module.exports = {
       passReqToCallback : true
     },
     github: {
-      clientID: '4f528995ee2120b8723d',
-      clientSecret: '727bda5ba0fa70ff198bf2cb89f6d3df23a66f22',
+      clientID: 'b15f57fd85df2b4a5f42',
+      clientSecret: '617d599f8aa7c8d2570ee53f6877816150301193',
       callbackURL: 'http://localhost:3000/auth/github/callback',
       passReqToCallback : true
     },

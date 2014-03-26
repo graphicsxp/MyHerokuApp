@@ -22,12 +22,12 @@ module.exports = function (config) {
                 done(null, user);
             } else {
                 var user = new User({created: Date.now()});
-
-
-                    user[profile.provider].id = profile.id;
-                    user[profile.provider].token = accessToken;
-                    user[profile.provider].name = profile.name.givenName + ' ' + profile.name.familyName;
-                    user[profile.provider].email = profile.emails[0].value;
+                user[profile.provider] = {
+                   id: profile.id,
+                   token: accessToken,
+                   name: profile.name ? profile.name.givenName + ' ' + profile.name.familyName : profile.username,
+                   email: profile.emails[0].value
+                }
 
                 user.save(function (err) {
                     if (err) {
@@ -43,5 +43,5 @@ module.exports = function (config) {
 
     passport.use(new FacebookStrategy(config.facebook, authenticationCallback));
     passport.use(new GoogleStrategy(config.google, authenticationCallback));
-//    passport.use(new GithubStrategy(config.github, authenticationCallback));
+    passport.use(new GithubStrategy(config.github, authenticationCallback));
 }
