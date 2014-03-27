@@ -66,9 +66,9 @@ module.exports = function (app) {
         })
     );
 
-    app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }),
+    app.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }),
         function (req, res) {
-    });
+        });
 
     app.get('/auth/google/callback',
         passport.authenticate('google', {
@@ -98,6 +98,38 @@ module.exports = function (app) {
             res.redirect('/');
         }
     );
+
+    app.post('/signup', function (req, res, next) {
+        passport.authenticate('local-signup', function (err, user, info) {
+            if (err) {
+                return res.json(err);
+            }
+            req.logIn(user, function (err) {
+                if (err) {
+                    return res.json(err);
+                }
+                return res.json(200, user);
+            });
+        })(req, res, next);
+    });
+
+    app.post('/signin', function (req, res, next) {
+        passport.authenticate('local-signin', function (err, user, info) {
+            if (err) {
+                return res.json(err);
+            }
+            req.logIn(user, function (err) {
+                if (err) {
+                    return res.json(err);
+                }
+                return res.json(200, user);
+            });
+        })(req, res, next);
+    });
+//        passport.authenticate('local-signin', {
+//        successRedirect : '/profile', // redirect to the secure profile section
+//        failureRedirect : '/login', // redirect back to the signup page if there is an error
+//        failureFlash : true // allow flash messages
 
     app.get('/login', function (req, res) {
         res.send({'isAuthenticated': req.isAuthenticated(), 'user': req.user});

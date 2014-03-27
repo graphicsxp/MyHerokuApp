@@ -11,11 +11,11 @@ var bundle = pound.defineAsset; //alias
 
 // Override default resolve function for `$js` and `$css`
 pound.resolve.js = function (filename) { return './public/javascripts/' + filename + '.js'; };
-pound.resolve.css = function (filename) { return __dirname + '/public/stylesheets/' + filename + '.css'; };
+pound.resolve.css = function (filename) { return __dirname + '/public/css/' + filename + '.css'; };
 
 // Add new resolve function for `$myCssDir` and `$appjs`
 // The resolve function's result will replace `$resolveFunctionName` for each resources
-pound.resolve.myCssDir = function (filename) { return __dirname + '/public/stylesheets/' + filename + '.css'; };
+pound.resolve.myCssDir = function (filename) { return __dirname + '/public/css/' + filename + '.css'; };
 pound.resolve.appjs = function (filename) { return '/app/' + filename + '.js'; };
 
 bundle('home', {

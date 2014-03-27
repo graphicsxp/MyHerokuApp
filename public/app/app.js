@@ -1,9 +1,24 @@
-var scotchTodo = angular.module('scotchTodo', []).run(function ($http, $rootScope) {
+var scotchTodo = angular.module('scotchTodo', ['ui.router', 'samdev.authentication']);
+
+scotchTodo.config(['$stateProvider', function ($stateProvider) {
+    $stateProvider
+        .state('home', {
+            url: '',
+            views: {
+                '': {
+                    templateUrl: 'app/views/home.html'
+                }
+            }
+        })
+}]);
+
+
+scotchTodo.run(function ($http, $rootScope) {
     $http.get('/login')
         .success(function (data) {
             $rootScope.isAuthenticated = data.isAuthenticated;
 
-            if ($rootScope.isAuthenticated){
+            if ($rootScope.isAuthenticated) {
                 $rootScope.user = data.user;
             }
         });
