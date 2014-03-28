@@ -2,7 +2,7 @@
 <div class="col-sm-6 col-sm-offset-3">
     <h1><span class="fa fa-sign-in"></span> Login</h1>
 
-    <a href="/auth/facebook" ng-show="!isAuthenticated" class="btn btn-info"><span class="fa fa-facebook"></span> Facebook</a>
+    <a href="/auth/facebook"  class="btn btn-info"><span class="fa fa-facebook"></span> Facebook</a>
     <a href="/auth/google" ng-show="!isAuthenticated" class="btn btn-danger"><span class="fa fa-google-plus"></span> Google</a>
     <a href="/auth/github" ng-show="!isAuthenticated" class="btn btn-default"><span class="fa fa-github"></span> Github</a>
 
@@ -10,11 +10,11 @@
     <form data-ng-submit="submit()"  method="post">
         <div class="form-group">
             <label>Email</label>
-            <input type="text" class="form-control" name="email" data-ng-model="email">
+            <input type="text" class="form-control" name="email" data-ng-model="vm.user.email">
         </div>
         <div class="form-group">
             <label>Password</label>
-            <input type="password" class="form-control" name="password" data-ng-model="password">
+            <input type="password" class="form-control" name="password" data-ng-model="vm.user.password">
         </div>
 
         <button type="submit" class="btn btn-warning btn-lg">Login</button>

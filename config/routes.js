@@ -66,6 +66,17 @@ module.exports = function (app) {
         })
     );
 
+    //authorization ------------------------------------------------------------
+    app.get('/auth/facebook', passport.authorize('facebook', { scope: 'email' }));
+
+    app.get('/auth/facebook/callback',
+        passport.authorize('facebook', {
+            successRedirect: '/',
+            failureRedirect: '/login',
+            failureFlash: true
+        })
+    );
+
     app.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }),
         function (req, res) {
         });
@@ -82,10 +93,11 @@ module.exports = function (app) {
     );
 
     app.get('/auth/github', passport.authenticate('github', {
-        failureRedirect: '/login',
-        failureFlash: true
-    }),
+            failureRedirect: '/login',
+            failureFlash: true
+        }),
         function (req, res) {
+            res.redirect('/');
         }
     );
 
@@ -126,10 +138,6 @@ module.exports = function (app) {
             });
         })(req, res, next);
     });
-//        passport.authenticate('local-signin', {
-//        successRedirect : '/profile', // redirect to the secure profile section
-//        failureRedirect : '/login', // redirect back to the signup page if there is an error
-//        failureFlash : true // allow flash messages
 
     app.get('/login', function (req, res) {
         res.send({'isAuthenticated': req.isAuthenticated(), 'user': req.user});

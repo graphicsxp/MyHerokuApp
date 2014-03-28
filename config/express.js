@@ -9,7 +9,8 @@ var express = require('express')
     , helpers = require('view-helpers')
     , pkg = require('../package.json')
     , assets = require('./assets')
-    , passport = require('passport');
+    , passport = require('passport')
+    , User = require('../models/user');
 
 var env = process.env.NODE_ENV || 'development'
 
@@ -73,12 +74,15 @@ module.exports = function (app, config) {
         }));
 
         passport.serializeUser(function (user, done) {
-            done(null, user);
+            done(null, user.id);
         });
 
-        passport.deserializeUser(function (obj, done) {
-            done(null, obj);
+        passport.deserializeUser(function (id, done) {
+            User.findById(id, function(err, user) {
+                done(err, user);
+            });
         });
+
         // use passport session
         app.use(passport.initialize());
         app.use(passport.session());

@@ -15,31 +15,53 @@ module.exports = function (config) {
         var criteria = new Object();
         criteria[profile.provider + '.id'] = profile.id;
 
-        User.findOne(criteria, function (err, user) {
-            if (err) {
-                console.log(err);
-            }
-            if (!err && user != null) {
-                done(null, user);
-            } else {
-                var user = new User({created: Date.now()});
-                user[profile.provider] = {
-                    id: profile.id,
-                    token: accessToken,
-                    name: profile.name ? profile.name.givenName + ' ' + profile.name.familyName : profile.username,
-                    email: profile.emails[0].value
+        // check if the user is already logged in
+        if (!req.user) {
+            User.findOne(criteria, function (err, user) {
+                if (err) {
+                    console.log(err);
                 }
-
-                user.save(function (err) {
-                    if (err) {
-                        console.log(err);
-                    } else {
-                        console.log("saving user ...");
-                        done(null, user);
+                if (!err && user != null) {
+                    done(null, user);
+                } else {
+                    var user = new User({created: Date.now()});
+                    user[profile.provider] = {
+                        id: profile.id,
+                        token: accessToken,
+                        name: profile.name ? profile.name.givenName + ' ' + profile.name.familyName : profile.username,
+                        email: profile.emails[0].value
                     }
-                });
+
+                    user.save(function (err) {
+                        if (err) {
+                            console.log(err);
+                        } else {
+                            console.log("saving user ...");
+                            done(null, user);
+                        }
+                    });
+                }
+            });
+        } else {
+            // user already exists and is logged in, we have to link accounts
+            var user = req.user; // pull the user out of the session
+            // update the current users facebook credentials
+            user[profile.provider] = {
+                id: profile.id,
+                token: accessToken,
+                name: profile.name.givenName + ' ' + profile.name.familyName,
+                email: profile.emails[0].value
             }
-        });
+
+            user.save(function (err) {
+                if (err) {
+                    console.log(err);
+                } else {
+                    console.log("saving user ...");
+                    done(null, user);
+                }
+            });
+        }
     }
 
     var localAuthenticationSignUpCallback = function (req, email, password, done) {
@@ -92,9 +114,9 @@ module.exports = function (config) {
             return done(null, user);
         });
     };
-    passport.use('local-signin', new LocalStrategy({ usernameField: 'email', passwordField: 'password', passReqToCallback: true }, localAuthenticationSignInCallback));
 
     passport.use('local-signup', new LocalStrategy({ usernameField: 'email', passwordField: 'password', passReqToCallback: true }, localAuthenticationSignUpCallback));
+    passport.use('local-signin', new LocalStrategy({ usernameField: 'email', passwordField: 'password', passReqToCallback: true }, localAuthenticationSignInCallback));
     passport.use(new FacebookStrategy(config.facebook, authenticationCallback));
     passport.use(new GoogleStrategy(config.google, authenticationCallback));
     passport.use(new GithubStrategy(config.github, authenticationCallback));
