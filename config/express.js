@@ -62,7 +62,7 @@ module.exports = function (app, config) {
         app.use(express.methodOverride()) //for using app.put and app.delete instead of app.post all the time (simulates DELETE and PUT)
 
         // Assets automatic configuration thanks to Pound
-        //assets.configure(app);
+        assets.configure(app);
 
         // express/mongo session storage
         app.use(express.session({
