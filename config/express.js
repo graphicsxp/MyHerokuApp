@@ -8,13 +8,14 @@ var express = require('express')
     , winston = require('winston')
     , helpers = require('view-helpers')
     , pkg = require('../package.json')
-    , assets = require('./assets')
+    , BundleUp = require('bundle-up2')
     , passport = require('passport')
     , User = require('../models/user');
 
 var env = process.env.NODE_ENV || 'development'
 
 module.exports = function (app, config) {
+
 
     app.set('showStackError', true)
 
@@ -52,6 +53,14 @@ module.exports = function (app, config) {
 
         app.use(express.favicon())
 
+        var assets = require('./assets');
+
+        BundleUp(app, assets, {
+            staticRoot: config.root + '/public',
+            staticUrlRoot: '/'
+        });
+
+
         app.use(express.static(config.root + '/public'))  // set the static files location /public/img will be /img for users
 
         // cookieParser should be above session
@@ -63,6 +72,12 @@ module.exports = function (app, config) {
 
         // Assets automatic configuration thanks to Pound
         assets.configure(app);
+
+
+        // To actually serve the files a static file
+        // server needs to be added after Bundle Up
+        //app.use(express.static(__dirname + '/public/'))
+
 
         // express/mongo session storage
         app.use(express.session({
@@ -78,7 +93,7 @@ module.exports = function (app, config) {
         });
 
         passport.deserializeUser(function (id, done) {
-            User.findById(id, function(err, user) {
+            User.findById(id, function (err, user) {
                 done(err, user);
             });
         });
@@ -93,7 +108,7 @@ module.exports = function (app, config) {
         // should be declared after session and flash
         app.use(helpers(pkg.name))
 
-      // adds CSRF support
+        // adds CSRF support
 //    if (process.env.NODE_ENV !== 'test') {
 //      app.use(express.csrf())
 //

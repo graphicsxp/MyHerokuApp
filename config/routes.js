@@ -93,9 +93,9 @@ module.exports = function (app) {
     );
 
     app.get('/auth/github', passport.authenticate('github', {
-            failureRedirect: '/login',
-            failureFlash: true
-        }),
+        failureRedirect: '/login',
+        failureFlash: true
+    }),
         function (req, res) {
             res.redirect('/');
         }
@@ -194,6 +194,7 @@ module.exports = function (app) {
 
     // application -------------------------------------------------------------
     app.get('/', function (req, res) {
-        res.render('index', { title: "TODO", user: req.user })
+        res.render('index', { title: "TODO", user: req.user})
+
     });
 }
