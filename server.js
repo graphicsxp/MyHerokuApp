@@ -7,19 +7,19 @@ var helpers = require('express-helpers');
 var http = require('http');
 var path = require('path');
 
-// Load configurations
-// if test env, load example file
+//Load configurations
+//if test env, load example file
 var env = process.env.NODE_ENV || 'development'
     , config = require('./config/config')[env]
     , mongoose = require('mongoose')
 
 // Bootstrap db connection
 // Connect to mongodb
-var connect = function () {
+var connectToDb = function () {
     var options = { server: { socketOptions: { keepAlive: 1 } } }
     mongoose.connect(config.db, options)
 }
-connect()
+connectToDb();
 
 // Error handler
 mongoose.connection.on('error', function (err) {
@@ -28,12 +28,12 @@ mongoose.connection.on('error', function (err) {
 
 // Reconnect when closed
 mongoose.connection.on('disconnected', function () {
-    connect()
+    connectToDb()
 })
 
 var app = express();
 
-require('express-helpers')(app);
+//require('express-helpers')(app);
 
 // express settings
 require('./config/express')(app, config);
@@ -45,7 +45,7 @@ require('./config/authentication')(config);
 
 // development only
 if ('development' == app.get('env')) {
-    app.use(express.errorHandler());
+    app.use(require('errorhandler')());
 }
 
 // Start the app by listening on <port>
